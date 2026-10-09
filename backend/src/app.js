@@ -1,0 +1,61 @@
+const express = require("express");
+const cors = require("cors");
+const helmet = require("helmet");
+const cookieParser = require("cookie-parser");
+const { rateLimit } = require("express-rate-limit");
+
+const { env } = require("./config/env");
+const { errorHandler } = require("./middlewares/errorHandler");
+const { sendSuccess } = require("./utils/response");
+
+const app = express();
+
+// ── Security headers ──────────────────────────────────────────────────────────
+app.use(helmet());
+
+// ── CORS ──────────────────────────────────────────────────────────────────────
+app.use(
+  cors({
+    origin: env.CLIENT_URL,
+    credentials: true, // allow cookies cross-origin
+  })
+);
+
+// ── Global rate limiter ───────────────────────────────────────────────────────
+const globalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 200,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { success: false, message: "Too many requests, please try again later" },
+});
+app.use(globalLimiter);
+
+// ── Body & cookie parsing ─────────────────────────────────────────────────────
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+
+// ── Health check ──────────────────────────────────────────────────────────────
+app.get("/api/health", (req, res) => {
+  sendSuccess(res, 200, "Server is running", {
+    environment: env.NODE_ENV,
+    timestamp: new Date().toISOString(),
+  });
+});
+
+// ── API routes (mounted in later phases) ─────────────────────────────────────
+// app.use("/api/auth", require("./routes/auth.routes"));
+// app.use("/api/opportunities", require("./routes/opportunity.routes"));
+// app.use("/api/investments", require("./routes/investment.routes"));
+// app.use("/api/wallet", require("./routes/wallet.routes"));
+
+// ── 404 handler ───────────────────────────────────────────────────────────────
+app.use((req, res) => {
+  res.status(404).json({ success: false, message: "Route not found" });
+});
+
+// ── Centralized error handler (must be last) ──────────────────────────────────
+app.use(errorHandler);
+
+module.exports = app;
