@@ -50,4 +50,17 @@ function validate(schema, body) {
   return { data: result.data };
 }
 
-module.exports = { registerSchema, loginSchema, validate };
+const completeProfileSchema = z.object({
+  name: z
+    .string({ required_error: "Name is required" })
+    .trim()
+    .min(1, "Name is required")
+    .max(100, "Name cannot exceed 100 characters"),
+
+  role: z.enum(["investor", "fundraiser"], {
+    required_error: "Role is required",
+    invalid_type_error: "Role must be investor or fundraiser",
+  }),
+});
+
+module.exports = { registerSchema, loginSchema, completeProfileSchema, validate };

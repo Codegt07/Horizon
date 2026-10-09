@@ -5,6 +5,10 @@ const { sendError } = require("../utils/response");
  * Authenticate middleware — verifies the JWT from the httpOnly cookie.
  * On success, attaches the decoded payload to req.user and calls next().
  * On failure, responds with 401 immediately.
+ *
+ * Accepts only full-auth tokens (type === "auth").
+ * Partial profile-completion tokens (type === "partial") are explicitly
+ * rejected here; they are only valid on POST /api/auth/complete-profile.
  */
 function authenticate(req, res, next) {
   const token = req.cookies?.token;
@@ -16,7 +20,12 @@ function authenticate(req, res, next) {
   try {
     const payload = verifyToken(token);
 
-    // Block incomplete profiles from all routes except /complete-profile (Phase 3)
+    // Reject partial tokens — they are not valid for protected routes
+    if (payload.type !== "auth") {
+      return sendError(res, 401, "Invalid token type");
+    }
+
+    // Block incomplete profiles (OAuth users who haven't submitted their role yet)
     if (payload.isProfileComplete === false) {
       return sendError(res, 403, "Please complete your profile before continuing");
     }

@@ -11,10 +11,12 @@ const userSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      required: [true, "Email is required"],
+      required: false,      // OAuth users with no verified email have null here
       unique: true,
+      sparse: true,         // allows multiple null values in the unique index
       lowercase: true,
       trim: true,
+      default: null,
     },
     passwordHash: {
       type: String,

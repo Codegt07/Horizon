@@ -140,10 +140,12 @@ describe("User model — schema validation", () => {
     ).rejects.toThrow(/Role must be investor or fundraiser/);
   });
 
-  it("rejects a missing email", async () => {
+  it("allows null email for OAuth-only users (no verified email from Google)", async () => {
+    // Email is optional at the model level — enforcement for email/password
+    // accounts happens at the Zod validator layer in the controller.
     await expect(
-      User.create(makeUser({ email: undefined }))
-    ).rejects.toThrow(/Email is required/);
+      User.create(makeUser({ email: undefined, googleId: "g-123" }))
+    ).resolves.toBeDefined();
   });
 
   it("rejects a missing name", async () => {

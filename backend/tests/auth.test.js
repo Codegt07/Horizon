@@ -390,3 +390,111 @@ describe("requireRole middleware", () => {
     expect(res.statusCode).toBe(401);
   });
 });
+
+// ── Token type enforcement (Phase 3) ─────────────────────────────────────────
+//
+// authenticate must accept only type === "auth" tokens. Partial tokens and
+// tokens with any other type claim must be rejected with 401.
+
+describe("authenticate middleware — token type enforcement", () => {
+  const jwt = require("jsonwebtoken");
+  const { issuePartialCookie } = require("../src/utils/token");
+  const express = require("express");
+  const cookieParser = require("cookie-parser");
+  const { authenticate } = require("../src/middlewares/authenticate");
+  const { sendSuccess } = require("../src/utils/response");
+
+  // Minimal app — one protected route
+  const typeTestApp = express();
+  typeTestApp.use(cookieParser());
+  typeTestApp.get("/protected", authenticate, (req, res) =>
+    sendSuccess(res, 200, "ok")
+  );
+
+  // Helper: mint any JWT and return it as a cookie string
+  function mintCookie(payload, options = {}) {
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+      ...options,
+    });
+    return [`token=${token}; Path=/; HttpOnly`];
+  }
+
+  it("accepts a valid type=auth token", async () => {
+    const { cookie } = await loginUser(INVESTOR);
+    const res = await request(typeTestApp)
+      .get("/protected")
+      .set("Cookie", cookie);
+
+    expect(res.statusCode).toBe(200);
+  });
+
+  it("rejects a type=partial token with 401", async () => {
+    // Build a valid partial token the same way issuePartialCookie does
+    const user = await User.create({
+      name: "Partial User",
+      email: "partial@example.com",
+      passwordHash: null,
+      role: "investor",
+      isProfileComplete: false,
+    });
+
+    const partialToken = jwt.sign(
+      { userId: user._id.toString(), type: "partial" },
+      process.env.JWT_SECRET,
+      { expiresIn: "15m" }
+    );
+
+    const res = await request(typeTestApp)
+      .get("/protected")
+      .set("Cookie", [`token=${partialToken}; Path=/; HttpOnly`]);
+
+    expect(res.statusCode).toBe(401);
+    expect(res.body.message).toMatch(/invalid token type/i);
+  });
+
+  it("rejects a token with no type field with 401", async () => {
+    // Simulate a legacy or externally crafted token without a type field
+    const cookie = mintCookie({
+      userId: "000000000000000000000001",
+      role: "investor",
+      isProfileComplete: true,
+    });
+
+    const res = await request(typeTestApp)
+      .get("/protected")
+      .set("Cookie", cookie);
+
+    expect(res.statusCode).toBe(401);
+  });
+
+  it("rejects a token with an unknown type with 401", async () => {
+    const cookie = mintCookie({
+      userId: "000000000000000000000001",
+      role: "investor",
+      isProfileComplete: true,
+      type: "admin",
+    });
+
+    const res = await request(typeTestApp)
+      .get("/protected")
+      .set("Cookie", cookie);
+
+    expect(res.statusCode).toBe(401);
+  });
+
+  it("rejects a type=auth token where isProfileComplete is false with 403", async () => {
+    const cookie = mintCookie({
+      userId: "000000000000000000000001",
+      role: "investor",
+      isProfileComplete: false,
+      type: "auth",
+    });
+
+    const res = await request(typeTestApp)
+      .get("/protected")
+      .set("Cookie", cookie);
+
+    expect(res.statusCode).toBe(403);
+  });
+});
