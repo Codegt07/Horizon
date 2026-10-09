@@ -21,15 +21,17 @@ app.use(
   })
 );
 
-// ── Global rate limiter ───────────────────────────────────────────────────────
-const globalLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 200,
-  standardHeaders: true,
-  legacyHeaders: false,
-  message: { success: false, message: "Too many requests, please try again later" },
-});
-app.use(globalLimiter);
+// ── Global rate limiter (disabled in test to avoid poisoning integration tests) ─
+if (env.NODE_ENV !== "test") {
+  const globalLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 200,
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: { success: false, message: "Too many requests, please try again later" },
+  });
+  app.use(globalLimiter);
+}
 
 // ── Body & cookie parsing ─────────────────────────────────────────────────────
 app.use(express.json());
@@ -44,8 +46,8 @@ app.get("/api/health", (req, res) => {
   });
 });
 
-// ── API routes (mounted in later phases) ─────────────────────────────────────
-// app.use("/api/auth", require("./routes/auth.routes"));
+// ── API routes ────────────────────────────────────────────────────────────────
+app.use("/api/auth", require("./routes/auth.routes"));
 // app.use("/api/opportunities", require("./routes/opportunity.routes"));
 // app.use("/api/investments", require("./routes/investment.routes"));
 // app.use("/api/wallet", require("./routes/wallet.routes"));
