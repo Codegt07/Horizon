@@ -57,8 +57,8 @@ app.get("/api/health", (req, res) => {
 // ── API routes ────────────────────────────────────────────────────────────────
 app.use("/api/auth",          require("./routes/auth.routes"));
 app.use("/api/opportunities", require("./routes/opportunity.routes"));
-// app.use("/api/investments", require("./routes/investment.routes"));
-// app.use("/api/wallet",      require("./routes/wallet.routes"));
+app.use("/api/investments",   require("./routes/investment.routes"));
+app.use("/api/wallet",        require("./routes/wallet.routes"));
 
 // ── 404 handler ───────────────────────────────────────────────────────────────
 app.use((req, res) => {
