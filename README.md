@@ -155,13 +155,8 @@ Horizon/
 ### 1. Clone the repository
 
 ```bash
-<<<<<<< HEAD
-git clone <your-repo-url>
-=======
-git clone https://github.com/Codegt07/Horizon
->>>>>>> cbbc1f9 (docs: add project README)
+git clone https://github.com/Codegt07/Horizon.git
 cd Horizon
-```
 
 ### 2. Install dependencies
 
