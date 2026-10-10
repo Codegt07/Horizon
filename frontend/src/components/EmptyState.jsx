@@ -3,7 +3,7 @@ const EmptyState = ({ title, description, action }) => {
     <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-[#E2E8F0] bg-white p-12 text-center">
       <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#E8F8ED]">
         <svg
-          className="h-8 w-8 text-[#57C97F]"
+          className="h-8 w-8 text-[#36A96A]"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -24,3 +24,4 @@ const EmptyState = ({ title, description, action }) => {
 };
 
 export default EmptyState;
+

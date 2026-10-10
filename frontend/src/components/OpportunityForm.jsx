@@ -123,7 +123,7 @@ const OpportunityForm = ({ initialData = null, onSubmit, isSubmitting, submitLab
           onChange={handleChange}
           onBlur={handleBlur}
           disabled={isSubmitting}
-          className={`w-full rounded-md border px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#57C97F] disabled:cursor-not-allowed disabled:bg-gray-50 ${
+          className={`w-full rounded-md border px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#36A96A] disabled:cursor-not-allowed disabled:bg-gray-50 ${
             errors.title ? "border-red-300 bg-red-50" : "border-[#E2E8F0] bg-white"
           }`}
           placeholder="e.g., Tech Startup Seed Funding"
@@ -145,7 +145,7 @@ const OpportunityForm = ({ initialData = null, onSubmit, isSubmitting, submitLab
           onBlur={handleBlur}
           disabled={isSubmitting}
           rows={6}
-          className={`w-full rounded-md border px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#57C97F] disabled:cursor-not-allowed disabled:bg-gray-50 ${
+          className={`w-full rounded-md border px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#36A96A] disabled:cursor-not-allowed disabled:bg-gray-50 ${
             errors.description ? "border-red-300 bg-red-50" : "border-[#E2E8F0] bg-white"
           }`}
           placeholder="Describe your funding opportunity in detail..."
@@ -170,7 +170,7 @@ const OpportunityForm = ({ initialData = null, onSubmit, isSubmitting, submitLab
             onBlur={handleBlur}
             disabled={isSubmitting}
             min="1"
-            className={`w-full rounded-md border px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#57C97F] disabled:cursor-not-allowed disabled:bg-gray-50 ${
+            className={`w-full rounded-md border px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#36A96A] disabled:cursor-not-allowed disabled:bg-gray-50 ${
               errors.targetAmount ? "border-red-300 bg-red-50" : "border-[#E2E8F0] bg-white"
             }`}
             placeholder="e.g., 1000000"
@@ -191,7 +191,7 @@ const OpportunityForm = ({ initialData = null, onSubmit, isSubmitting, submitLab
             onBlur={handleBlur}
             disabled={isSubmitting}
             min="1"
-            className={`w-full rounded-md border px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#57C97F] disabled:cursor-not-allowed disabled:bg-gray-50 ${
+            className={`w-full rounded-md border px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#36A96A] disabled:cursor-not-allowed disabled:bg-gray-50 ${
               errors.minInvestment ? "border-red-300 bg-red-50" : "border-[#E2E8F0] bg-white"
             }`}
             placeholder="e.g., 10000"
@@ -214,7 +214,7 @@ const OpportunityForm = ({ initialData = null, onSubmit, isSubmitting, submitLab
             onChange={handleChange}
             onBlur={handleBlur}
             disabled={isSubmitting}
-            className={`w-full rounded-md border px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#57C97F] disabled:cursor-not-allowed disabled:bg-gray-50 ${
+            className={`w-full rounded-md border px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#36A96A] disabled:cursor-not-allowed disabled:bg-gray-50 ${
               errors.deadline ? "border-red-300 bg-red-50" : "border-[#E2E8F0] bg-white"
             }`}
           />
@@ -231,7 +231,7 @@ const OpportunityForm = ({ initialData = null, onSubmit, isSubmitting, submitLab
             value={formData.status}
             onChange={handleChange}
             disabled={isSubmitting}
-            className="w-full rounded-md border border-[#E2E8F0] bg-white px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#57C97F] disabled:cursor-not-allowed disabled:bg-gray-50"
+            className="w-full rounded-md border border-[#E2E8F0] bg-white px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#36A96A] disabled:cursor-not-allowed disabled:bg-gray-50"
           >
             <option value="draft">Draft</option>
             <option value="active">Active</option>
@@ -249,7 +249,7 @@ const OpportunityForm = ({ initialData = null, onSubmit, isSubmitting, submitLab
         <button
           type="submit"
           disabled={isSubmitting}
-          className="rounded-md bg-[#57C97F] px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#45B76A] focus:outline-none focus:ring-2 focus:ring-[#57C97F] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          className="cursor-pointer rounded-md bg-[#36A96A] px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#2D8A57] focus:outline-none focus:ring-2 focus:ring-[#36A96A] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isSubmitting ? "Saving..." : submitLabel}
         </button>
@@ -259,3 +259,4 @@ const OpportunityForm = ({ initialData = null, onSubmit, isSubmitting, submitLab
 };
 
 export default OpportunityForm;
+

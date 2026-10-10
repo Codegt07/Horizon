@@ -33,7 +33,7 @@ const CreateOpportunity = () => {
     <DashboardLayout title="Create Opportunity">
       <Link
         to="/fundraiser/opportunities"
-        className="mb-6 inline-flex items-center text-sm font-medium text-[#57C97F] hover:text-[#45B76A]"
+        className="mb-6 inline-flex items-center text-sm font-medium text-[#36A96A] hover:text-[#2D8A57]"
       >
         <svg className="mr-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -59,3 +59,4 @@ const CreateOpportunity = () => {
 };
 
 export default CreateOpportunity;
+

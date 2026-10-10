@@ -26,7 +26,7 @@ const Home = () => {
               <span className="text-sm text-[#64748B]">Welcome, {user.name}</span>
               <Link
                 to={dashboardLink}
-                className="rounded-md bg-[#57C97F] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#45B76A]"
+                className="cursor-pointer rounded-md bg-[#36A96A] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#2D8A57]"
               >
                 Go to Dashboard
               </Link>
@@ -59,13 +59,13 @@ const Home = () => {
           <div className="flex items-center gap-3">
             <Link
               to="/login"
-              className="rounded-md border border-[#E2E8F0] bg-white px-4 py-2 text-sm font-medium text-[#0F172A] transition-colors hover:bg-[#F8FAFC]"
+              className="cursor-pointer rounded-md border border-[#E2E8F0] bg-white px-4 py-2 text-sm font-medium text-[#0F172A] transition-colors hover:bg-[#F8FAFC]"
             >
               Sign in
             </Link>
             <Link
               to="/register"
-              className="rounded-md bg-[#57C97F] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#45B76A]"
+              className="cursor-pointer rounded-md bg-[#36A96A] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#2D8A57]"
             >
               Sign up
             </Link>
@@ -86,13 +86,13 @@ const Home = () => {
           <div className="mt-10 flex justify-center gap-4">
             <Link
               to="/register"
-              className="rounded-md bg-[#57C97F] px-6 py-3 text-base font-medium text-white transition-colors hover:bg-[#45B76A]"
+              className="cursor-pointer rounded-md bg-[#36A96A] px-6 py-3 text-base font-medium text-white transition-colors hover:bg-[#2D8A57]"
             >
               Get started
             </Link>
             <Link
               to="/login"
-              className="rounded-md border border-[#E2E8F0] bg-white px-6 py-3 text-base font-medium text-[#0F172A] transition-colors hover:bg-[#F8FAFC]"
+              className="cursor-pointer rounded-md border border-[#E2E8F0] bg-white px-6 py-3 text-base font-medium text-[#0F172A] transition-colors hover:bg-[#F8FAFC]"
             >
               Sign in
             </Link>
@@ -103,7 +103,7 @@ const Home = () => {
             <div className="rounded-lg border border-[#E2E8F0] bg-white p-6 text-left">
               <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-[#E8F8ED]">
                 <svg
-                  className="h-6 w-6 text-[#57C97F]"
+                  className="h-6 w-6 text-[#36A96A]"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -126,7 +126,7 @@ const Home = () => {
             <div className="rounded-lg border border-[#E2E8F0] bg-white p-6 text-left">
               <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-[#E8F8ED]">
                 <svg
-                  className="h-6 w-6 text-[#57C97F]"
+                  className="h-6 w-6 text-[#36A96A]"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -153,3 +153,4 @@ const Home = () => {
 };
 
 export default Home;
+

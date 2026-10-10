@@ -17,7 +17,7 @@ const OpportunityCard = ({ opportunity, linkTo, showStatus = false }) => {
   return (
     <Link
       to={linkTo}
-      className="block rounded-lg border border-[#E2E8F0] bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+      className="block rounded-lg border border-[#E2E8F0] bg-white p-4 shadow-sm transition-shadow hover:shadow-md sm:p-6"
     >
       {/* Header */}
       <div className="mb-4 flex items-start justify-between">
@@ -43,14 +43,14 @@ const OpportunityCard = ({ opportunity, linkTo, showStatus = false }) => {
       <p className="mb-4 line-clamp-2 text-sm text-[#64748B]">{opportunity.description}</p>
 
       {/* Stats */}
-      <div className="mb-4 grid grid-cols-2 gap-4 text-sm">
+      <div className="mb-4 grid grid-cols-2 gap-3 text-sm sm:gap-4">
         <div>
           <p className="text-[#64748B]">Target</p>
-          <p className="font-medium text-[#0F172A]">₹{opportunity.targetAmount.toLocaleString()}</p>
+          <p className="break-words font-medium text-[#0F172A]">₹{opportunity.targetAmount.toLocaleString()}</p>
         </div>
         <div>
           <p className="text-[#64748B]">Min. Investment</p>
-          <p className="font-medium text-[#0F172A]">₹{opportunity.minInvestment.toLocaleString()}</p>
+          <p className="break-words font-medium text-[#0F172A]">₹{opportunity.minInvestment.toLocaleString()}</p>
         </div>
       </div>
 
@@ -64,7 +64,7 @@ const OpportunityCard = ({ opportunity, linkTo, showStatus = false }) => {
         </div>
         <div className="h-2 w-full rounded-full bg-gray-200">
           <div
-            className="h-full rounded-full bg-[#57C97F]"
+            className="h-full rounded-full bg-[#36A96A]"
             style={{ width: `${Math.min(progress, 100)}%` }}
           />
         </div>
@@ -75,10 +75,11 @@ const OpportunityCard = ({ opportunity, linkTo, showStatus = false }) => {
         <span>
           {isClosed ? "Closed" : isActive ? `${daysLeft} days left` : "Not active"}
         </span>
-        <span className="text-[#57C97F] font-medium">View details →</span>
+        <span className="text-[#36A96A] font-medium">View details →</span>
       </div>
     </Link>
   );
 };
 
 export default OpportunityCard;
+

@@ -1,11 +1,8 @@
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-/**
- * RoleRoute - requires specific role(s)
- * Must be nested inside ProtectedRoute
- * Redirects to / if user doesn't have required role
- */
+
+ 
 const RoleRoute = ({ children, allowedRoles }) => {
   const { user } = useAuth();
 
@@ -17,3 +14,4 @@ const RoleRoute = ({ children, allowedRoles }) => {
 };
 
 export default RoleRoute;
+

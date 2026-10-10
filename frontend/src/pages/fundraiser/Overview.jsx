@@ -55,7 +55,7 @@ const Overview = () => {
           subtitle="All time"
           icon={
             <svg
-              className="h-6 w-6 text-[#57C97F]"
+              className="h-6 w-6 text-[#36A96A]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -75,7 +75,7 @@ const Overview = () => {
           subtitle="Across all opportunities"
           icon={
             <svg
-              className="h-6 w-6 text-[#57C97F]"
+              className="h-6 w-6 text-[#36A96A]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -95,7 +95,7 @@ const Overview = () => {
           subtitle="Currently accepting investments"
           icon={
             <svg
-              className="h-6 w-6 text-[#57C97F]"
+              className="h-6 w-6 text-[#36A96A]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -119,7 +119,7 @@ const Overview = () => {
         >
           <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#E8F8ED]">
             <svg
-              className="h-6 w-6 text-[#57C97F]"
+              className="h-6 w-6 text-[#36A96A]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -144,7 +144,7 @@ const Overview = () => {
         >
           <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#E8F8ED]">
             <svg
-              className="h-6 w-6 text-[#57C97F]"
+              className="h-6 w-6 text-[#36A96A]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -168,3 +168,4 @@ const Overview = () => {
 };
 
 export default Overview;
+

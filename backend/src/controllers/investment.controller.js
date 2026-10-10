@@ -4,10 +4,6 @@ const { getOwnedOpportunity } = require("../services/opportunity.service");
 const { sendSuccess, sendError } = require("../utils/response");
 const { investmentSchema, validate } = require("../validators/investment.validator");
 
-/**
- * POST /api/investments
- * Investor only. Create a new investment.
- */
 async function createInvestment(req, res, next) {
   try {
     const { data, errors } = validate(investmentSchema, req.body);
@@ -24,16 +20,11 @@ async function createInvestment(req, res, next) {
       transaction,
     });
   } catch (err) {
-    // Business-logic errors from executeInvestment have statusCode set
     if (err.statusCode) return sendError(res, err.statusCode, err.message);
     next(err);
   }
 }
 
-/**
- * GET /api/investments/my
- * Investor only. Returns the authenticated investor's portfolio.
- */
 async function getMyInvestments(req, res, next) {
   try {
     const investments = await Investment.find({ investorId: req.user.userId })
@@ -46,13 +37,8 @@ async function getMyInvestments(req, res, next) {
   }
 }
 
-/**
- * GET /api/investments/opportunity/:id
- * Fundraiser only. Returns all investments for an opportunity the fundraiser owns.
- */
 async function getOpportunityInvestments(req, res, next) {
   try {
-    // Ownership check — throws 404/403 with statusCode if invalid
     await getOwnedOpportunity(req.params.id, req.user.userId);
 
     const investments = await Investment.find({ opportunityId: req.params.id })

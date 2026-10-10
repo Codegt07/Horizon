@@ -67,3 +67,4 @@ const BrowseOpportunities = () => {
 };
 
 export default BrowseOpportunities;
+

@@ -11,16 +11,16 @@ const userSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      required: false,      // OAuth users with no verified email have null here
+      required: false,
       unique: true,
-      sparse: true,         // allows multiple null values in the unique index
+      sparse: true,
       lowercase: true,
       trim: true,
       default: null,
     },
     passwordHash: {
       type: String,
-      default: null, // null for OAuth-only accounts (Phase 3)
+      default: null,
     },
     role: {
       type: String,
@@ -30,16 +30,14 @@ const userSchema = new mongoose.Schema(
       },
       required: [true, "Role is required"],
     },
-    // OAuth fields — populated in Phase 3
     googleId: {
       type: String,
       default: null,
     },
     isProfileComplete: {
       type: Boolean,
-      default: true, // email/password registrations are always complete
+      default: true,
     },
-    // Wallet balance — relevant for investors, kept on User for simplicity
     walletBalance: {
       type: Number,
       default: 0,
@@ -49,23 +47,16 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Hash password before saving — only when passwordHash has been set or changed.
-// Using the promise-based async style: Mongoose awaits the returned promise,
-// so next() is not needed and must not be called.
 userSchema.pre("save", async function () {
   if (!this.isModified("passwordHash") || !this.passwordHash) return;
   this.passwordHash = await bcrypt.hash(this.passwordHash, 12);
-  // Any error thrown here rejects the promise and Mongoose propagates it
-  // to the caller — no explicit error handling needed.
 });
 
-// Compare a plain-text password against the stored hash.
 userSchema.methods.comparePassword = async function (plainPassword) {
   if (!this.passwordHash) return false;
   return bcrypt.compare(plainPassword, this.passwordHash);
 };
 
-// Strip sensitive fields from all JSON serialisations.
 userSchema.methods.toJSON = function () {
   const obj = this.toObject();
   delete obj.passwordHash;

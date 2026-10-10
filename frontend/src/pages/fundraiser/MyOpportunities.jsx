@@ -72,7 +72,7 @@ const MyOpportunities = () => {
         </p>
         <Link
           to="/fundraiser/opportunities/create"
-          className="rounded-md bg-[#57C97F] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#45B76A]"
+          className="cursor-pointer rounded-md bg-[#36A96A] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#2D8A57]"
         >
           Create New
         </Link>
@@ -85,7 +85,7 @@ const MyOpportunities = () => {
           action={
             <Link
               to="/fundraiser/opportunities/create"
-              className="rounded-md bg-[#57C97F] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#45B76A]"
+              className="cursor-pointer rounded-md bg-[#36A96A] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#2D8A57]"
             >
               Create Opportunity
             </Link>
@@ -134,7 +134,7 @@ const MyOpportunities = () => {
                     </div>
                     <div className="h-2 w-full rounded-full bg-gray-200">
                       <div
-                        className="h-full rounded-full bg-[#57C97F]"
+                        className="h-full rounded-full bg-[#36A96A]"
                         style={{
                           width: `${Math.min(
                             (opportunity.raisedAmount / opportunity.targetAmount) * 100,
@@ -153,21 +153,23 @@ const MyOpportunities = () => {
                 <div className="flex flex-col gap-2">
                   <Link
                     to={`/fundraiser/opportunities/${opportunity._id}/investors`}
-                    className="rounded-md border border-[#E2E8F0] bg-white px-4 py-2 text-center text-sm font-medium text-[#0F172A] transition-colors hover:bg-[#F8FAFC]"
+                    className="cursor-pointer rounded-md border border-[#E2E8F0] bg-white px-4 py-2 text-center text-sm font-medium text-[#0F172A] transition-colors hover:bg-[#F8FAFC]"
                   >
                     View Investors
                   </Link>
-                  <Link
-                    to={`/fundraiser/opportunities/${opportunity._id}/edit`}
-                    className="rounded-md border border-[#E2E8F0] bg-white px-4 py-2 text-center text-sm font-medium text-[#0F172A] transition-colors hover:bg-[#F8FAFC]"
-                  >
-                    Edit
-                  </Link>
+                  {opportunity.status !== "closed" && (
+                    <Link
+                      to={`/fundraiser/opportunities/${opportunity._id}/edit`}
+                      className="cursor-pointer rounded-md border border-[#E2E8F0] bg-white px-4 py-2 text-center text-sm font-medium text-[#0F172A] transition-colors hover:bg-[#F8FAFC]"
+                    >
+                      Edit
+                    </Link>
+                  )}
                   {opportunity.status === "draft" && (
                     <button
                       onClick={() => handleDelete(opportunity._id)}
                       disabled={deletingId === opportunity._id}
-                      className="rounded-md border border-red-200 bg-white px-4 py-2 text-sm font-medium text-red-600 transition-colors hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50"
+                      className="cursor-pointer rounded-md border border-red-200 bg-white px-4 py-2 text-sm font-medium text-red-600 transition-colors hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       {deletingId === opportunity._id ? "Deleting..." : "Delete"}
                     </button>
@@ -183,3 +185,4 @@ const MyOpportunities = () => {
 };
 
 export default MyOpportunities;
+

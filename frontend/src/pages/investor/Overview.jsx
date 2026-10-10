@@ -58,7 +58,7 @@ const Overview = () => {
           subtitle="Available to invest"
           icon={
             <svg
-              className="h-6 w-6 text-[#57C97F]"
+              className="h-6 w-6 text-[#36A96A]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -78,7 +78,7 @@ const Overview = () => {
           subtitle="Across all opportunities"
           icon={
             <svg
-              className="h-6 w-6 text-[#57C97F]"
+              className="h-6 w-6 text-[#36A96A]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -98,7 +98,7 @@ const Overview = () => {
           subtitle="Opportunities invested in"
           icon={
             <svg
-              className="h-6 w-6 text-[#57C97F]"
+              className="h-6 w-6 text-[#36A96A]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -118,11 +118,11 @@ const Overview = () => {
       <div className="grid gap-6 md:grid-cols-2">
         <Link
           to="/investor/opportunities"
-          className="rounded-lg border border-[#E2E8F0] bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+          className="rounded-lg border border-[#E2E8F0] bg-white p-4 shadow-sm transition-shadow hover:shadow-md sm:p-6"
         >
           <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#E8F8ED]">
             <svg
-              className="h-6 w-6 text-[#57C97F]"
+              className="h-6 w-6 text-[#36A96A]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -143,11 +143,11 @@ const Overview = () => {
 
         <Link
           to="/investor/wallet"
-          className="rounded-lg border border-[#E2E8F0] bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+          className="rounded-lg border border-[#E2E8F0] bg-white p-4 shadow-sm transition-shadow hover:shadow-md sm:p-6"
         >
           <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#E8F8ED]">
             <svg
-              className="h-6 w-6 text-[#57C97F]"
+              className="h-6 w-6 text-[#36A96A]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -171,3 +171,4 @@ const Overview = () => {
 };
 
 export default Overview;
+

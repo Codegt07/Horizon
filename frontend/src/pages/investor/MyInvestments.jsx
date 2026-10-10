@@ -55,7 +55,7 @@ const MyInvestments = () => {
           action={
             <Link
               to="/investor/opportunities"
-              className="rounded-md bg-[#57C97F] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#45B76A]"
+              className="cursor-pointer rounded-md bg-[#36A96A] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#2D8A57]"
             >
               Browse Opportunities
             </Link>
@@ -64,11 +64,11 @@ const MyInvestments = () => {
       ) : (
         <>
           {/* Summary */}
-          <div className="mb-6 rounded-lg border border-[#E2E8F0] bg-white p-6 shadow-sm">
-            <div className="grid gap-6 md:grid-cols-3">
+          <div className="mb-6 rounded-lg border border-[#E2E8F0] bg-white p-4 shadow-sm sm:p-6">
+            <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 md:grid-cols-3">
               <div>
                 <p className="text-sm text-[#64748B]">Total Invested</p>
-                <p className="mt-1 text-2xl font-bold text-[#0F172A]">
+                <p className="mt-1 break-words text-2xl font-bold text-[#0F172A]">
                   ₹{totalInvested.toLocaleString()}
                 </p>
               </div>
@@ -76,7 +76,7 @@ const MyInvestments = () => {
                 <p className="text-sm text-[#64748B]">Number of Investments</p>
                 <p className="mt-1 text-2xl font-bold text-[#0F172A]">{investments.length}</p>
               </div>
-              <div>
+              <div className="sm:col-span-2 md:col-span-1">
                 <p className="text-sm text-[#64748B]">Active Opportunities</p>
                 <p className="mt-1 text-2xl font-bold text-[#0F172A]">
                   {investments.filter((inv) => inv.opportunityId?.status === "active").length}
@@ -98,9 +98,9 @@ const MyInvestments = () => {
               return (
                 <div
                   key={investment._id}
-                  className="rounded-lg border border-[#E2E8F0] bg-white p-6 shadow-sm"
+                  className="rounded-lg border border-[#E2E8F0] bg-white p-4 shadow-sm sm:p-6"
                 >
-                  <div className="grid gap-6 lg:grid-cols-3">
+                  <div className="grid gap-4 sm:gap-6 lg:grid-cols-3">
                     {/* Opportunity Info */}
                     <div className="lg:col-span-2">
                       <div className="mb-2 flex items-start justify-between">
@@ -131,7 +131,7 @@ const MyInvestments = () => {
                         </div>
                         <div className="h-2 w-full rounded-full bg-gray-200">
                           <div
-                            className="h-full rounded-full bg-[#57C97F]"
+                            className="h-full rounded-full bg-[#36A96A]"
                             style={{ width: `${Math.min(progress, 100)}%` }}
                           />
                         </div>
@@ -143,10 +143,10 @@ const MyInvestments = () => {
                     </div>
 
                     {/* Investment Info */}
-                    <div className="flex flex-col justify-between rounded-lg bg-[#F8FAFC] p-4">
+                    <div className="flex flex-col justify-between rounded-lg bg-[#F8FAFC] p-3 sm:p-4">
                       <div>
                         <p className="mb-1 text-xs text-[#64748B]">Your investment</p>
-                        <p className="text-2xl font-bold text-[#0F172A]">
+                        <p className="break-words text-xl font-bold text-[#0F172A] sm:text-2xl">
                           ₹{investment.amount.toLocaleString()}
                         </p>
                         <p className="mt-2 text-xs text-[#64748B]">
@@ -156,7 +156,7 @@ const MyInvestments = () => {
                       {opportunity.status === "active" && (
                         <Link
                           to={`/investor/opportunities/${opportunity._id}`}
-                          className="mt-4 text-sm font-medium text-[#57C97F] hover:text-[#45B76A]"
+                          className="mt-3 text-sm font-medium text-[#36A96A] hover:text-[#2D8A57] sm:mt-4"
                         >
                           View details →
                         </Link>
@@ -174,3 +174,4 @@ const MyInvestments = () => {
 };
 
 export default MyInvestments;
+

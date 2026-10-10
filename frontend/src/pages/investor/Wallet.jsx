@@ -86,17 +86,17 @@ const Wallet = () => {
 
   return (
     <DashboardLayout title="Wallet">
-      <div className="grid gap-6 lg:grid-cols-3">
+      <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-3">
         {/* Balance & Deposit Form */}
-        <div className="lg:col-span-1">
+        <div className="md:col-span-1 lg:col-span-1">
           {/* Current Balance */}
-          <div className="mb-6 rounded-lg border border-[#E2E8F0] bg-white p-6 shadow-sm">
+          <div className="mb-6 rounded-lg border border-[#E2E8F0] bg-white p-4 shadow-sm sm:p-6">
             <p className="mb-1 text-sm text-[#64748B]">Available Balance</p>
-            <p className="text-4xl font-bold text-[#0F172A]">₹{balance.toLocaleString()}</p>
+            <p className="break-words text-3xl font-bold text-[#0F172A] sm:text-4xl">₹{balance.toLocaleString()}</p>
           </div>
 
           {/* Deposit Form */}
-          <div className="rounded-lg border border-[#E2E8F0] bg-white p-6 shadow-sm">
+          <div className="rounded-lg border border-[#E2E8F0] bg-white p-4 shadow-sm sm:p-6">
             <h3 className="mb-4 text-lg font-semibold text-[#0F172A]">Deposit Funds</h3>
 
             {successMessage && (
@@ -124,7 +124,7 @@ const Wallet = () => {
                   disabled={isSubmitting}
                   min="1"
                   max="100000"
-                  className="w-full rounded-md border border-[#E2E8F0] bg-white px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#57C97F] disabled:cursor-not-allowed disabled:bg-gray-50"
+                  className="w-full rounded-md border border-[#E2E8F0] bg-white px-3 py-3 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#36A96A] disabled:cursor-not-allowed disabled:bg-gray-50 sm:py-2"
                   placeholder="Enter amount"
                 />
                 <p className="mt-1 text-xs text-[#64748B]">Max ₹1,00,000 per transaction</p>
@@ -133,7 +133,7 @@ const Wallet = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full rounded-md bg-[#57C97F] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#45B76A] focus:outline-none focus:ring-2 focus:ring-[#57C97F] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                className="w-full cursor-pointer rounded-md bg-[#36A96A] px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-[#2D8A57] focus:outline-none focus:ring-2 focus:ring-[#36A96A] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 sm:py-2.5"
               >
                 {isSubmitting ? "Processing..." : "Deposit"}
               </button>
@@ -147,8 +147,8 @@ const Wallet = () => {
         </div>
 
         {/* Transaction History */}
-        <div className="lg:col-span-2">
-          <div className="rounded-lg border border-[#E2E8F0] bg-white p-6 shadow-sm">
+        <div className="md:col-span-1 lg:col-span-2">
+          <div className="rounded-lg border border-[#E2E8F0] bg-white p-4 shadow-sm sm:p-6">
             <h3 className="mb-4 text-lg font-semibold text-[#0F172A]">Transaction History</h3>
 
             {transactions.length === 0 ? (
@@ -160,17 +160,17 @@ const Wallet = () => {
                 {transactions.map((transaction) => (
                   <div
                     key={transaction._id}
-                    className="flex items-center justify-between rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] p-4"
+                    className="flex flex-col gap-3 rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] p-4 sm:flex-row sm:items-center sm:justify-between"
                   >
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-3 sm:gap-4">
                       <div
-                        className={`flex h-10 w-10 items-center justify-center rounded-full ${
+                        className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full ${
                           transaction.type === "deposit" ? "bg-[#E8F8ED]" : "bg-gray-100"
                         }`}
                       >
                         {transaction.type === "deposit" ? (
                           <svg
-                            className="h-5 w-5 text-[#57C97F]"
+                            className="h-5 w-5 text-[#36A96A]"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -198,18 +198,18 @@ const Wallet = () => {
                           </svg>
                         )}
                       </div>
-                      <div>
-                        <p className="font-medium text-[#0F172A] capitalize">
+                      <div className="min-w-0 flex-1">
+                        <p className="font-medium capitalize text-[#0F172A]">
                           {transaction.type}
                         </p>
-                        <p className="text-sm text-[#64748B]">
+                        <p className="truncate text-sm text-[#64748B]">
                           {new Date(transaction.createdAt).toLocaleString()}
                         </p>
                       </div>
                     </div>
                     <p
-                      className={`text-lg font-semibold ${
-                        transaction.type === "deposit" ? "text-[#57C97F]" : "text-[#0F172A]"
+                      className={`break-words text-lg font-semibold sm:text-right ${
+                        transaction.type === "deposit" ? "text-[#36A96A]" : "text-[#0F172A]"
                       }`}
                     >
                       {transaction.type === "deposit" ? "+" : "-"}₹
@@ -227,3 +227,4 @@ const Wallet = () => {
 };
 
 export default Wallet;
+

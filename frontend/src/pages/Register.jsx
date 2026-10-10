@@ -151,7 +151,7 @@ const Register = () => {
       <div className="w-full max-w-md">
         {/* Header */}
         <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold text-[#57C97F]">InvestMate</h1>
+          <h1 className="text-3xl font-bold text-[#36A96A]">InvestMate</h1>
           <p className="mt-2 text-[#64748B]">Create your account</p>
         </div>
 
@@ -179,7 +179,7 @@ const Register = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 disabled={isSubmitting}
-                className={`w-full rounded-md border px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#57C97F] disabled:cursor-not-allowed disabled:bg-gray-50 ${
+                className={`w-full rounded-md border px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#36A96A] disabled:cursor-not-allowed disabled:bg-gray-50 ${
                   errors.name ? "border-red-300 bg-red-50" : "border-[#E2E8F0] bg-white"
                 }`}
                 placeholder="John Doe"
@@ -200,7 +200,7 @@ const Register = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 disabled={isSubmitting}
-                className={`w-full rounded-md border px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#57C97F] disabled:cursor-not-allowed disabled:bg-gray-50 ${
+                className={`w-full rounded-md border px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#36A96A] disabled:cursor-not-allowed disabled:bg-gray-50 ${
                   errors.email ? "border-red-300 bg-red-50" : "border-[#E2E8F0] bg-white"
                 }`}
                 placeholder="you@example.com"
@@ -221,7 +221,7 @@ const Register = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 disabled={isSubmitting}
-                className={`w-full rounded-md border px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#57C97F] disabled:cursor-not-allowed disabled:bg-gray-50 ${
+                className={`w-full rounded-md border px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#36A96A] disabled:cursor-not-allowed disabled:bg-gray-50 ${
                   errors.password ? "border-red-300 bg-red-50" : "border-[#E2E8F0] bg-white"
                 }`}
                 placeholder="••••••••"
@@ -245,7 +245,7 @@ const Register = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 disabled={isSubmitting}
-                className={`w-full rounded-md border px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#57C97F] disabled:cursor-not-allowed disabled:bg-gray-50 ${
+                className={`w-full rounded-md border px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#36A96A] disabled:cursor-not-allowed disabled:bg-gray-50 ${
                   errors.confirmPassword ? "border-red-300 bg-red-50" : "border-[#E2E8F0] bg-white"
                 }`}
                 placeholder="••••••••"
@@ -261,7 +261,7 @@ const Register = () => {
                 I want to
               </label>
               <div className="space-y-2">
-                <label className="flex cursor-pointer items-center rounded-md border border-[#E2E8F0] p-3 transition-colors hover:border-[#57C97F] has-[:checked]:border-[#57C97F] has-[:checked]:bg-[#E8F8ED]">
+                <label className="flex cursor-pointer items-center rounded-md border border-[#E2E8F0] p-3 transition-colors hover:border-[#36A96A] has-[:checked]:border-[#36A96A] has-[:checked]:bg-[#E8F8ED]">
                   <input
                     type="radio"
                     name="role"
@@ -269,14 +269,14 @@ const Register = () => {
                     checked={formData.role === "investor"}
                     onChange={handleChange}
                     disabled={isSubmitting}
-                    className="h-4 w-4 border-[#E2E8F0] text-[#57C97F] focus:ring-2 focus:ring-[#57C97F] disabled:cursor-not-allowed"
+                    className="h-4 w-4 border-[#E2E8F0] text-[#36A96A] focus:ring-2 focus:ring-[#36A96A] disabled:cursor-not-allowed"
                   />
                   <div className="ml-3">
                     <span className="block text-sm font-medium text-[#0F172A]">Invest in opportunities</span>
                     <span className="block text-xs text-[#64748B]">Browse and fund projects</span>
                   </div>
                 </label>
-                <label className="flex cursor-pointer items-center rounded-md border border-[#E2E8F0] p-3 transition-colors hover:border-[#57C97F] has-[:checked]:border-[#57C97F] has-[:checked]:bg-[#E8F8ED]">
+                <label className="flex cursor-pointer items-center rounded-md border border-[#E2E8F0] p-3 transition-colors hover:border-[#36A96A] has-[:checked]:border-[#36A96A] has-[:checked]:bg-[#E8F8ED]">
                   <input
                     type="radio"
                     name="role"
@@ -284,7 +284,7 @@ const Register = () => {
                     checked={formData.role === "fundraiser"}
                     onChange={handleChange}
                     disabled={isSubmitting}
-                    className="h-4 w-4 border-[#E2E8F0] text-[#57C97F] focus:ring-2 focus:ring-[#57C97F] disabled:cursor-not-allowed"
+                    className="h-4 w-4 border-[#E2E8F0] text-[#36A96A] focus:ring-2 focus:ring-[#36A96A] disabled:cursor-not-allowed"
                   />
                   <div className="ml-3">
                     <span className="block text-sm font-medium text-[#0F172A]">Raise funds</span>
@@ -299,7 +299,7 @@ const Register = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full rounded-md bg-[#57C97F] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#45B76A] focus:outline-none focus:ring-2 focus:ring-[#57C97F] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              className="w-full cursor-pointer rounded-md bg-[#36A96A] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#2D8A57] focus:outline-none focus:ring-2 focus:ring-[#36A96A] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             >
               {isSubmitting ? "Creating account..." : "Create account"}
             </button>
@@ -317,7 +317,7 @@ const Register = () => {
             type="button"
             onClick={handleGoogleSignup}
             disabled={isSubmitting}
-            className="flex w-full items-center justify-center gap-3 rounded-md border border-[#E2E8F0] bg-white px-4 py-2.5 text-sm font-medium text-[#0F172A] transition-colors hover:bg-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-[#57C97F] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            className="flex w-full cursor-pointer items-center justify-center gap-3 rounded-md border border-[#E2E8F0] bg-white px-4 py-2.5 text-sm font-medium text-[#0F172A] transition-colors hover:bg-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-[#36A96A] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
           >
             <svg className="h-5 w-5" viewBox="0 0 24 24">
               <path
@@ -343,7 +343,7 @@ const Register = () => {
           {/* Login Link */}
           <p className="mt-6 text-center text-sm text-[#64748B]">
             Already have an account?{" "}
-            <Link to="/login" className="font-medium text-[#57C97F] hover:text-[#45B76A]">
+            <Link to="/login" className="font-medium text-[#36A96A] hover:text-[#2D8A57]">
               Sign in
             </Link>
           </p>
@@ -354,3 +354,4 @@ const Register = () => {
 };
 
 export default Register;
+

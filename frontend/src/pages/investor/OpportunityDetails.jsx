@@ -78,22 +78,50 @@ const OpportunityDetails = () => {
         amount,
       });
 
-      setSuccessMessage(`Successfully invested ₹${amount.toLocaleString()}!`);
-      setInvestmentAmount("");
+      const willBeFullyFunded = amount >= remaining;
 
-      // Refresh data
-      const [oppRes, balanceRes] = await Promise.all([
-        api.get(`/api/opportunities/${id}`),
-        api.get("/api/wallet/balance"),
-      ]);
+      if (willBeFullyFunded) {
+        setSuccessMessage("Investment successful! This opportunity is now fully funded.");
+        setInvestmentAmount("");
+        
+        // Refresh wallet balance only
+        try {
+          const balanceRes = await api.get("/api/wallet/balance");
+          setWalletBalance(balanceRes.data.data.walletBalance);
+        } catch (balanceErr) {
+          console.error("Failed to refresh wallet balance:", balanceErr);
+        }
 
-      setOpportunity(oppRes.data.data);
-      setWalletBalance(balanceRes.data.data.walletBalance);
+        // Redirect to browse opportunities after brief delay
+        setTimeout(() => {
+          navigate("/investor/opportunities");
+        }, 2000);
+      } else {
+        setSuccessMessage(`Successfully invested ₹${amount.toLocaleString()}!`);
+        setInvestmentAmount("");
 
-      // Redirect to investments after 2 seconds
-      setTimeout(() => {
-        navigate("/investor/investments");
-      }, 2000);
+        // Refresh both opportunity and wallet data
+        try {
+          const [oppRes, balanceRes] = await Promise.all([
+            api.get(`/api/opportunities/${id}`),
+            api.get("/api/wallet/balance"),
+          ]);
+
+          setOpportunity(oppRes.data.data);
+          setWalletBalance(balanceRes.data.data.walletBalance);
+        } catch (refreshErr) {
+          // If refresh fails, just update wallet balance
+          console.error("Failed to refresh data:", refreshErr);
+          try {
+            const balanceRes = await api.get("/api/wallet/balance");
+            setWalletBalance(balanceRes.data.data.walletBalance);
+          } catch (balanceErr) {
+            console.error("Failed to refresh wallet balance:", balanceErr);
+          }
+        }
+
+        // Stay on page, no redirect
+      }
     } catch (err) {
       if (err.response?.data?.message) {
         setInvestmentError(err.response.data.message);
@@ -121,7 +149,7 @@ const OpportunityDetails = () => {
         </div>
         <Link
           to="/investor/opportunities"
-          className="mt-4 inline-block text-sm font-medium text-[#57C97F] hover:text-[#45B76A]"
+          className="mt-4 inline-block text-sm font-medium text-[#36A96A] hover:text-[#2D8A57]"
         >
           ← Back to opportunities
         </Link>
@@ -144,7 +172,7 @@ const OpportunityDetails = () => {
     <DashboardLayout title={opportunity.title}>
       <Link
         to="/investor/opportunities"
-        className="mb-6 inline-flex items-center text-sm font-medium text-[#57C97F] hover:text-[#45B76A]"
+        className="mb-6 inline-flex items-center text-sm font-medium text-[#36A96A] hover:text-[#2D8A57]"
       >
         <svg
           className="mr-1 h-4 w-4"
@@ -160,22 +188,22 @@ const OpportunityDetails = () => {
       <div className="grid gap-6 lg:grid-cols-3">
         {/* Main Content */}
         <div className="lg:col-span-2">
-          <div className="rounded-lg border border-[#E2E8F0] bg-white p-6 shadow-sm">
-            <h2 className="mb-4 text-2xl font-bold text-[#0F172A]">{opportunity.title}</h2>
+          <div className="rounded-lg border border-[#E2E8F0] bg-white p-4 shadow-sm sm:p-6">
+            <h2 className="mb-4 break-words text-xl font-bold text-[#0F172A] sm:text-2xl">{opportunity.title}</h2>
 
             {/* Progress */}
             <div className="mb-6">
               <div className="mb-2 flex justify-between text-sm">
-                <span className="font-semibold text-[#0F172A]">
+                <span className="break-words font-semibold text-[#0F172A]">
                   ₹{opportunity.raisedAmount.toLocaleString()} raised
                 </span>
-                <span className="text-[#64748B]">
+                <span className="ml-2 flex-shrink-0 text-[#64748B]">
                   of ₹{opportunity.targetAmount.toLocaleString()}
                 </span>
               </div>
               <div className="h-3 w-full rounded-full bg-gray-200">
                 <div
-                  className="h-full rounded-full bg-[#57C97F]"
+                  className="h-full rounded-full bg-[#36A96A]"
                   style={{ width: `${Math.min(progress, 100)}%` }}
                 />
               </div>
@@ -186,22 +214,22 @@ const OpportunityDetails = () => {
             </div>
 
             {/* Stats Grid */}
-            <div className="mb-6 grid grid-cols-2 gap-4 rounded-lg bg-[#F8FAFC] p-4">
+            <div className="mb-6 grid grid-cols-1 gap-4 rounded-lg bg-[#F8FAFC] p-4 sm:grid-cols-2">
               <div>
                 <p className="text-sm text-[#64748B]">Target Amount</p>
-                <p className="text-lg font-semibold text-[#0F172A]">
+                <p className="break-words text-lg font-semibold text-[#0F172A]">
                   ₹{opportunity.targetAmount.toLocaleString()}
                 </p>
               </div>
               <div>
                 <p className="text-sm text-[#64748B]">Minimum Investment</p>
-                <p className="text-lg font-semibold text-[#0F172A]">
+                <p className="break-words text-lg font-semibold text-[#0F172A]">
                   ₹{opportunity.minInvestment.toLocaleString()}
                 </p>
               </div>
               <div>
                 <p className="text-sm text-[#64748B]">Remaining</p>
-                <p className="text-lg font-semibold text-[#0F172A]">
+                <p className="break-words text-lg font-semibold text-[#0F172A]">
                   ₹{remaining.toLocaleString()}
                 </p>
               </div>
@@ -223,7 +251,7 @@ const OpportunityDetails = () => {
 
         {/* Investment Form */}
         <div className="lg:col-span-1">
-          <div className="sticky top-4 rounded-lg border border-[#E2E8F0] bg-white p-6 shadow-sm">
+          <div className="rounded-lg border border-[#E2E8F0] bg-white p-4 shadow-sm sm:p-6 lg:sticky lg:top-4">
             <h3 className="mb-4 text-lg font-semibold text-[#0F172A]">Invest Now</h3>
 
             {successMessage && (
@@ -240,7 +268,7 @@ const OpportunityDetails = () => {
 
             <div className="mb-4 rounded-lg bg-[#F8FAFC] p-3">
               <p className="text-xs text-[#64748B]">Your wallet balance</p>
-              <p className="text-lg font-semibold text-[#0F172A]">
+              <p className="break-words text-lg font-semibold text-[#0F172A]">
                 ₹{walletBalance.toLocaleString()}
               </p>
             </div>
@@ -258,10 +286,10 @@ const OpportunityDetails = () => {
                   disabled={isSubmitting || !!successMessage}
                   min={opportunity.minInvestment}
                   max={Math.min(remaining, walletBalance)}
-                  className="w-full rounded-md border border-[#E2E8F0] bg-white px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#57C97F] disabled:cursor-not-allowed disabled:bg-gray-50"
+                  className="w-full rounded-md border border-[#E2E8F0] bg-white px-3 py-3 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#36A96A] disabled:cursor-not-allowed disabled:bg-gray-50 sm:py-2"
                   placeholder={`Min ₹${opportunity.minInvestment.toLocaleString()}`}
                 />
-                <p className="mt-1 text-xs text-[#64748B]">
+                <p className="mt-1 break-words text-xs text-[#64748B]">
                   Min: ₹{opportunity.minInvestment.toLocaleString()}, Max: ₹
                   {Math.min(remaining, walletBalance).toLocaleString()}
                 </p>
@@ -270,7 +298,7 @@ const OpportunityDetails = () => {
               <button
                 type="submit"
                 disabled={isSubmitting || !!successMessage || remaining === 0}
-                className="w-full rounded-md bg-[#57C97F] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#45B76A] focus:outline-none focus:ring-2 focus:ring-[#57C97F] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                className="w-full cursor-pointer rounded-md bg-[#36A96A] px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-[#2D8A57] focus:outline-none focus:ring-2 focus:ring-[#36A96A] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 sm:py-2.5"
               >
                 {isSubmitting
                   ? "Processing..."
@@ -285,7 +313,7 @@ const OpportunityDetails = () => {
             {walletBalance === 0 && (
               <Link
                 to="/investor/wallet"
-                className="mt-4 block text-center text-sm font-medium text-[#57C97F] hover:text-[#45B76A]"
+                className="mt-4 block text-center text-sm font-medium text-[#36A96A] hover:text-[#2D8A57]"
               >
                 Add funds to wallet →
               </Link>
@@ -298,3 +326,4 @@ const OpportunityDetails = () => {
 };
 
 export default OpportunityDetails;
+

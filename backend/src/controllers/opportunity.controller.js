@@ -7,12 +7,6 @@ const {
   validate,
 } = require("../validators/opportunity.validator");
 
-// ── Create ────────────────────────────────────────────────────────────────────
-
-/**
- * POST /api/opportunities
- * Fundraiser only. Creates a new funding opportunity.
- */
 async function createOpportunity(req, res, next) {
   try {
     const { data, errors } = validate(opportunitySchema, req.body);
@@ -25,7 +19,6 @@ async function createOpportunity(req, res, next) {
       minInvestment: data.minInvestment,
       deadline: new Date(data.deadline),
       status: data.status,
-      // Always set from the authenticated user — never trust a client-supplied ID
       fundraiserId: req.user.userId,
     });
 
@@ -35,13 +28,6 @@ async function createOpportunity(req, res, next) {
   }
 }
 
-// ── List ──────────────────────────────────────────────────────────────────────
-
-/**
- * GET /api/opportunities
- * - Investors see only `active` opportunities.
- * - Fundraisers see all their own opportunities (any status).
- */
 async function listOpportunities(req, res, next) {
   try {
     const { role, userId } = req.user;
@@ -59,13 +45,6 @@ async function listOpportunities(req, res, next) {
   }
 }
 
-// ── Get one ───────────────────────────────────────────────────────────────────
-
-/**
- * GET /api/opportunities/:id
- * - Investors can fetch any `active` opportunity by ID.
- * - Fundraisers can fetch their own opportunities regardless of status.
- */
 async function getOpportunity(req, res, next) {
   try {
     const opportunity = await Opportunity.findById(req.params.id);
@@ -76,12 +55,10 @@ async function getOpportunity(req, res, next) {
 
     const { role, userId } = req.user;
 
-    // Investors may only see active opportunities
     if (role === "investor" && opportunity.status !== "active") {
       return sendError(res, 404, "Opportunity not found");
     }
 
-    // Fundraisers may only see their own
     if (role === "fundraiser" && opportunity.fundraiserId.toString() !== userId) {
       return sendError(res, 404, "Opportunity not found");
     }
@@ -92,14 +69,6 @@ async function getOpportunity(req, res, next) {
   }
 }
 
-// ── Update ────────────────────────────────────────────────────────────────────
-
-/**
- * PATCH /api/opportunities/:id
- * Fundraiser only. Only the owning fundraiser can update their opportunity.
- * Client may not modify fundraiserId, raisedAmount, or close the opportunity
- * directly (closing is system-managed when raisedAmount reaches targetAmount).
- */
 async function updateOpportunity(req, res, next) {
   try {
     const { data, errors } = validate(opportunityUpdateSchema, req.body);
@@ -107,7 +76,6 @@ async function updateOpportunity(req, res, next) {
 
     const opportunity = await getOwnedOpportunity(req.params.id, req.user.userId);
 
-    // Apply only the validated, permitted fields
     const UPDATABLE = ["title", "description", "targetAmount", "minInvestment", "deadline", "status"];
     UPDATABLE.forEach((field) => {
       if (data[field] !== undefined) {
@@ -123,14 +91,6 @@ async function updateOpportunity(req, res, next) {
   }
 }
 
-// ── Delete ────────────────────────────────────────────────────────────────────
-
-/**
- * DELETE /api/opportunities/:id
- * Fundraiser only. Only the owning fundraiser can delete their opportunity.
- * Deletion is restricted to `draft` status — once active or closed (i.e. once
- * investors may have interacted with it), the opportunity cannot be deleted.
- */
 async function deleteOpportunity(req, res, next) {
   try {
     const opportunity = await getOwnedOpportunity(req.params.id, req.user.userId);
