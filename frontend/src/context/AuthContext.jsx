@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
     const loadUser = async () => {
       try {
         const response = await api.get("/api/auth/me");
-        setUser(response.data.user);
+        setUser(response.data.data);
       } catch {
         // Not authenticated or token expired
         setUser(null);
