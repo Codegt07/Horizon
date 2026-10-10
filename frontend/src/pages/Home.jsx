@@ -21,12 +21,12 @@ const Home = () => {
         {/* Header */}
         <header className="border-b border-[#E2E8F0] bg-white">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
-            <h1 className="text-2xl font-bold text-[#123B32]">InvestMate</h1>
+            <h1 className="text-2xl font-bold text-[#0F172A]">InvestMate</h1>
             <div className="flex items-center gap-4">
               <span className="text-sm text-[#64748B]">Welcome, {user.name}</span>
               <Link
                 to={dashboardLink}
-                className="rounded-md bg-[#123B32] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#0F2E27]"
+                className="rounded-md bg-[#57C97F] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#45B76A]"
               >
                 Go to Dashboard
               </Link>
@@ -37,7 +37,7 @@ const Home = () => {
         {/* Content */}
         <main className="flex flex-1 items-center justify-center">
           <div className="text-center">
-            <h2 className="text-4xl font-bold text-[#123B32]">
+            <h2 className="text-4xl font-bold text-[#0F172A]">
               Welcome to InvestMate
             </h2>
             <p className="mt-4 text-lg text-[#64748B]">
@@ -55,7 +55,7 @@ const Home = () => {
       {/* Header */}
       <header className="border-b border-[#E2E8F0] bg-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
-          <h1 className="text-2xl font-bold text-[#123B32]">InvestMate</h1>
+          <h1 className="text-2xl font-bold text-[#0F172A]">InvestMate</h1>
           <div className="flex items-center gap-3">
             <Link
               to="/login"
@@ -65,7 +65,7 @@ const Home = () => {
             </Link>
             <Link
               to="/register"
-              className="rounded-md bg-[#123B32] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#0F2E27]"
+              className="rounded-md bg-[#57C97F] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#45B76A]"
             >
               Sign up
             </Link>
@@ -76,7 +76,7 @@ const Home = () => {
       {/* Hero Section */}
       <main className="flex flex-1 items-center justify-center px-4 py-16">
         <div className="max-w-3xl text-center">
-          <h2 className="text-5xl font-bold text-[#123B32]">
+          <h2 className="text-5xl font-bold text-[#0F172A]">
             Investment Simulation Platform
           </h2>
           <p className="mt-6 text-xl text-[#64748B]">
@@ -86,7 +86,7 @@ const Home = () => {
           <div className="mt-10 flex justify-center gap-4">
             <Link
               to="/register"
-              className="rounded-md bg-[#123B32] px-6 py-3 text-base font-medium text-white transition-colors hover:bg-[#0F2E27]"
+              className="rounded-md bg-[#57C97F] px-6 py-3 text-base font-medium text-white transition-colors hover:bg-[#45B76A]"
             >
               Get started
             </Link>
@@ -101,9 +101,9 @@ const Home = () => {
           {/* Features */}
           <div className="mt-20 grid gap-8 md:grid-cols-2">
             <div className="rounded-lg border border-[#E2E8F0] bg-white p-6 text-left">
-              <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-[#F0FDF4]">
+              <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-[#E8F8ED]">
                 <svg
-                  className="h-6 w-6 text-[#16A34A]"
+                  className="h-6 w-6 text-[#57C97F]"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -116,7 +116,7 @@ const Home = () => {
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-[#123B32]">For Investors</h3>
+              <h3 className="text-lg font-semibold text-[#0F172A]">For Investors</h3>
               <p className="mt-2 text-sm text-[#64748B]">
                 Browse investment opportunities, build a diverse portfolio, and track your returns
                 in real-time.
@@ -124,9 +124,9 @@ const Home = () => {
             </div>
 
             <div className="rounded-lg border border-[#E2E8F0] bg-white p-6 text-left">
-              <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-[#F0FDF4]">
+              <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-[#E8F8ED]">
                 <svg
-                  className="h-6 w-6 text-[#16A34A]"
+                  className="h-6 w-6 text-[#57C97F]"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"

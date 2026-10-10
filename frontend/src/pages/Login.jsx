@@ -121,7 +121,7 @@ const Login = () => {
       <div className="w-full max-w-md">
         {/* Header */}
         <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold text-[#123B32]">InvestMate</h1>
+          <h1 className="text-3xl font-bold text-[#57C97F]">InvestMate</h1>
           <p className="mt-2 text-[#64748B]">Sign in to your account</p>
         </div>
 
@@ -149,7 +149,7 @@ const Login = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 disabled={isSubmitting}
-                className={`w-full rounded-md border px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#16A34A] disabled:cursor-not-allowed disabled:bg-gray-50 ${
+                className={`w-full rounded-md border px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#57C97F] disabled:cursor-not-allowed disabled:bg-gray-50 ${
                   errors.email ? "border-red-300 bg-red-50" : "border-[#E2E8F0] bg-white"
                 }`}
                 placeholder="you@example.com"
@@ -170,7 +170,7 @@ const Login = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 disabled={isSubmitting}
-                className={`w-full rounded-md border px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#16A34A] disabled:cursor-not-allowed disabled:bg-gray-50 ${
+                className={`w-full rounded-md border px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#57C97F] disabled:cursor-not-allowed disabled:bg-gray-50 ${
                   errors.password ? "border-red-300 bg-red-50" : "border-[#E2E8F0] bg-white"
                 }`}
                 placeholder="••••••••"
@@ -182,7 +182,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full rounded-md bg-[#123B32] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#0F2E27] focus:outline-none focus:ring-2 focus:ring-[#16A34A] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              className="w-full rounded-md bg-[#57C97F] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#45B76A] focus:outline-none focus:ring-2 focus:ring-[#57C97F] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             >
               {isSubmitting ? "Signing in..." : "Sign in"}
             </button>
@@ -200,7 +200,7 @@ const Login = () => {
             type="button"
             onClick={handleGoogleLogin}
             disabled={isSubmitting}
-            className="flex w-full items-center justify-center gap-3 rounded-md border border-[#E2E8F0] bg-white px-4 py-2.5 text-sm font-medium text-[#0F172A] transition-colors hover:bg-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-[#16A34A] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            className="flex w-full items-center justify-center gap-3 rounded-md border border-[#E2E8F0] bg-white px-4 py-2.5 text-sm font-medium text-[#0F172A] transition-colors hover:bg-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-[#57C97F] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
           >
             <svg className="h-5 w-5" viewBox="0 0 24 24">
               <path
@@ -226,7 +226,7 @@ const Login = () => {
           {/* Register Link */}
           <p className="mt-6 text-center text-sm text-[#64748B]">
             Don&apos;t have an account?{" "}
-            <Link to="/register" className="font-medium text-[#16A34A] hover:text-[#15803D]">
+            <Link to="/register" className="font-medium text-[#57C97F] hover:text-[#45B76A]">
               Sign up
             </Link>
           </p>

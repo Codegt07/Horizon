@@ -121,7 +121,7 @@ const CompleteProfile = () => {
       <div className="w-full max-w-md">
         {/* Header */}
         <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold text-[#123B32]">Complete Your Profile</h1>
+          <h1 className="text-3xl font-bold text-[#57C97F]">Complete Your Profile</h1>
           <p className="mt-2 text-[#64748B]">
             We need a bit more information to set up your account
           </p>
@@ -151,7 +151,7 @@ const CompleteProfile = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 disabled={isSubmitting}
-                className={`w-full rounded-md border px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#16A34A] disabled:cursor-not-allowed disabled:bg-gray-50 ${
+                className={`w-full rounded-md border px-3 py-2 text-[#0F172A] transition-colors focus:outline-none focus:ring-2 focus:ring-[#57C97F] disabled:cursor-not-allowed disabled:bg-gray-50 ${
                   errors.name ? "border-red-300 bg-red-50" : "border-[#E2E8F0] bg-white"
                 }`}
                 placeholder="John Doe"
@@ -165,7 +165,7 @@ const CompleteProfile = () => {
                 I want to
               </label>
               <div className="space-y-2">
-                <label className="flex cursor-pointer items-center rounded-md border border-[#E2E8F0] p-3 transition-colors hover:border-[#16A34A] has-[:checked]:border-[#16A34A] has-[:checked]:bg-[#F0FDF4]">
+                <label className="flex cursor-pointer items-center rounded-md border border-[#E2E8F0] p-3 transition-colors hover:border-[#57C97F] has-[:checked]:border-[#57C97F] has-[:checked]:bg-[#E8F8ED]">
                   <input
                     type="radio"
                     name="role"
@@ -173,7 +173,7 @@ const CompleteProfile = () => {
                     checked={formData.role === "investor"}
                     onChange={handleChange}
                     disabled={isSubmitting}
-                    className="h-4 w-4 border-[#E2E8F0] text-[#16A34A] focus:ring-2 focus:ring-[#16A34A] disabled:cursor-not-allowed"
+                    className="h-4 w-4 border-[#E2E8F0] text-[#57C97F] focus:ring-2 focus:ring-[#57C97F] disabled:cursor-not-allowed"
                   />
                   <div className="ml-3">
                     <span className="block text-sm font-medium text-[#0F172A]">
@@ -182,7 +182,7 @@ const CompleteProfile = () => {
                     <span className="block text-xs text-[#64748B]">Browse and fund projects</span>
                   </div>
                 </label>
-                <label className="flex cursor-pointer items-center rounded-md border border-[#E2E8F0] p-3 transition-colors hover:border-[#16A34A] has-[:checked]:border-[#16A34A] has-[:checked]:bg-[#F0FDF4]">
+                <label className="flex cursor-pointer items-center rounded-md border border-[#E2E8F0] p-3 transition-colors hover:border-[#57C97F] has-[:checked]:border-[#57C97F] has-[:checked]:bg-[#E8F8ED]">
                   <input
                     type="radio"
                     name="role"
@@ -190,7 +190,7 @@ const CompleteProfile = () => {
                     checked={formData.role === "fundraiser"}
                     onChange={handleChange}
                     disabled={isSubmitting}
-                    className="h-4 w-4 border-[#E2E8F0] text-[#16A34A] focus:ring-2 focus:ring-[#16A34A] disabled:cursor-not-allowed"
+                    className="h-4 w-4 border-[#E2E8F0] text-[#57C97F] focus:ring-2 focus:ring-[#57C97F] disabled:cursor-not-allowed"
                   />
                   <div className="ml-3">
                     <span className="block text-sm font-medium text-[#0F172A]">Raise funds</span>
@@ -207,7 +207,7 @@ const CompleteProfile = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full rounded-md bg-[#123B32] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#0F2E27] focus:outline-none focus:ring-2 focus:ring-[#16A34A] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              className="w-full rounded-md bg-[#57C97F] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#45B76A] focus:outline-none focus:ring-2 focus:ring-[#57C97F] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             >
               {isSubmitting ? "Completing profile..." : "Complete profile"}
             </button>

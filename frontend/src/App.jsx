@@ -6,25 +6,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import CompleteProfile from "./pages/CompleteProfile";
-
-// Placeholder dashboards - will be built in Phase 8+
-const InvestorDashboard = () => (
-  <div className="flex h-screen items-center justify-center bg-[#F8FAFC]">
-    <div className="text-center">
-      <h1 className="text-3xl font-bold text-[#123B32]">Investor Dashboard</h1>
-      <p className="mt-2 text-[#64748B]">Coming soon in Phase 8</p>
-    </div>
-  </div>
-);
-
-const FundraiserDashboard = () => (
-  <div className="flex h-screen items-center justify-center bg-[#F8FAFC]">
-    <div className="text-center">
-      <h1 className="text-3xl font-bold text-[#123B32]">Fundraiser Dashboard</h1>
-      <p className="mt-2 text-[#64748B]">Coming soon in Phase 8</p>
-    </div>
-  </div>
-);
+import InvestorDashboard from "./pages/investor/InvestorDashboard";
+import FundraiserDashboard from "./pages/fundraiser/FundraiserDashboard";
 
 function App() {
   return (
